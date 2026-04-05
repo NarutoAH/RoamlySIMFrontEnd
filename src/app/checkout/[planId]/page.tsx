@@ -248,6 +248,12 @@ export default function CheckoutPage() {
                     Instant activation
                   </span>
                 </div>
+
+                <div className="rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-4 text-sm text-slate-600 dark:text-slate-300">
+                  <p className="font-medium text-slate-800 dark:text-slate-200 mb-2">Payment Methods</p>
+                  <p>We currently accept <span className="font-medium">Bank Transfers</span>, <span className="font-medium">JazzCash</span>, and <span className="font-medium">EasyPaisa</span>. Payment details will be shared via WhatsApp.</p>
+                  <p className="text-xs text-slate-400 mt-2">Online card payments coming soon!</p>
+                </div>
               </form>
             </Card>
           </motion.div>
