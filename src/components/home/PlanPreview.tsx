@@ -11,28 +11,28 @@ const featuredPlans = [
   {
     region: "Pakistan",
     flag: "\u{1F1F5}\u{1F1F0}",
-    name: "5 GB — 7 Days",
+    name: "5 GB - 7 Days",
     price: "PKR 1,630",
     link: "/plans/pakistan",
   },
   {
     region: "Saudi Arabia",
     flag: "\u{1F1F8}\u{1F1E6}",
-    name: "5 GB — 7 Days",
+    name: "5 GB - 7 Days",
     price: "$9.38",
     link: "/plans/middle-east",
   },
   {
     region: "Germany",
     flag: "\u{1F1E9}\u{1F1EA}",
-    name: "5 GB — 7 Days",
+    name: "5 GB - 7 Days",
     price: "$3.28",
     link: "/plans/europe",
   },
   {
     region: "UAE",
     flag: "\u{1F1E6}\u{1F1EA}",
-    name: "5 GB — 7 Days",
+    name: "5 GB - 7 Days",
     price: "$11.21",
     link: "/plans/middle-east",
   },
@@ -54,7 +54,7 @@ export default function PlanPreview() {
           </h2>
           <p className="text-slate-500 text-lg max-w-2xl mx-auto">
             Affordable data-only eSIM plans starting from just $0.91.
-            No voice or SMS — just reliable mobile data. Browse plans for your destination.
+            No voice or SMS - just reliable mobile data. Browse plans for your destination.
           </p>
         </motion.div>
 

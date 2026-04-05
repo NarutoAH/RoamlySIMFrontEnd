@@ -17,14 +17,14 @@ const features = [
     icon: Database,
     title: "Data Only Plans",
     description:
-      "Affordable data-only plans across 5 countries — no voice calls or SMS included. Choose from daily, weekly, or monthly options to suit your needs.",
+      "Affordable data-only plans across 5 countries - no voice calls or SMS included. Choose from daily, weekly, or monthly options to suit your needs.",
     color: "bg-emerald-500/10 text-emerald-500",
   },
   {
     icon: Smartphone,
     title: "Works on Non-PTA Phones",
     description:
-      "Our international eSIM connects via international roaming, so any eSIM-compatible device can get data connectivity hassle-free — including non-PTA phones in Pakistan.",
+      "Our international eSIM connects via international roaming, so any eSIM-compatible device can get data connectivity hassle-free - including non-PTA phones in Pakistan.",
     color: "bg-blue-500/10 text-blue-500",
   },
   {

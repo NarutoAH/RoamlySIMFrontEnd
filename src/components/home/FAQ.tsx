@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "Does Roamly eSIM work on non-PTA phones in Pakistan?",
     answer:
-      "Yes. Since our eSIMs operate on international roaming networks, they are compatible with non-PTA registered devices — just like any international SIM card works when roaming. This makes Roamly eSIM a convenient data solution for non-PTA phones in Pakistan.",
+      "Yes. Since our eSIMs operate on international roaming networks, they are compatible with non-PTA registered devices - just like any international SIM card works when roaming. This makes Roamly eSIM a convenient data solution for non-PTA phones in Pakistan.",
   },
   {
     question: "How do I activate my eSIM?",

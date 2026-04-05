@@ -17,7 +17,7 @@ const nonPtaNotice = (
       <p className="text-sm text-emerald-700 dark:text-emerald-400 leading-relaxed">
         Roamly eSIM provides international eSIMs that connect via international
         roaming networks. Since these are international SIMs, they are
-        compatible with non-PTA registered devices — just like any other
+        compatible with non-PTA registered devices - just like any other
         international SIM card would be when roaming in Pakistan.
       </p>
     </div>

@@ -10,7 +10,7 @@ const steps = [
     step: "01",
     title: "Choose a Plan",
     description:
-      "Browse our range of affordable international eSIM data plans. Pick the one that fits your usage — daily, weekly, or monthly.",
+      "Browse our range of affordable international eSIM data plans. Pick the one that fits your usage - daily, weekly, or monthly.",
   },
   {
     icon: CreditCard,

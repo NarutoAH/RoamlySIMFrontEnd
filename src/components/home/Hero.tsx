@@ -36,7 +36,7 @@ export default function Hero() {
             >
               <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
               <span className="text-emerald-400 text-sm font-medium">
-                International eSIM — 5 Countries Available
+                International eSIM - 5 Countries Available
               </span>
             </motion.div>
 
@@ -60,7 +60,7 @@ export default function Hero() {
               className="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed"
             >
               Get data-only eSIM plans for Pakistan, Saudi Arabia, UAE,
-              Germany, and Spain. No physical SIM needed, no voice or SMS — just
+              Germany, and Spain. No physical SIM needed, no voice or SMS - just
               fast, reliable mobile data. Activate in minutes wherever you are.
             </motion.p>
 
@@ -113,7 +113,7 @@ export default function Hero() {
             >
               {[
                 { icon: Zap, text: "Instant Activation" },
-                { icon: Wifi, text: "Data Only — No Calls/SMS" },
+                { icon: Wifi, text: "Data Only - No Calls/SMS" },
                 { icon: Shield, text: "Secure & Reliable" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2 text-slate-400">

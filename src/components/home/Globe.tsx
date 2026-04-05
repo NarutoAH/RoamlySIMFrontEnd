@@ -177,7 +177,7 @@ export default function Globe() {
             </h2>
             <p className="text-slate-400 text-lg leading-relaxed mb-8">
               Our international eSIM works across Pakistan, the Middle East, and
-              Europe. Get reliable high-speed data wherever you travel — one eSIM,
+              Europe. Get reliable high-speed data wherever you travel - one eSIM,
               multiple destinations.
             </p>
 
