@@ -12,19 +12,19 @@ const faqs = [
       "An eSIM (embedded SIM) is a digital SIM that allows you to activate a cellular plan without using a physical SIM card. It's built into your phone and can be activated by scanning a QR code. Most modern smartphones support eSIM technology.",
   },
   {
-    question: "Which countries does Roamly eSIM support?",
+    question: "Which countries does ESIMConnections support?",
     answer:
       "We currently offer international eSIM data plans for Pakistan, Saudi Arabia, UAE, Germany, and Spain. More countries are being added soon, including Qatar, Bahrain, Kuwait, and Turkey.",
   },
   {
-    question: "Does Roamly eSIM work on non-PTA phones in Pakistan?",
+    question: "Does ESIMConnections work on non-PTA phones in Pakistan?",
     answer:
-      "Yes. Since our eSIMs operate on international roaming networks, they are compatible with non-PTA registered devices - just like any international SIM card works when roaming. This makes Roamly eSIM a convenient data solution for non-PTA phones in Pakistan.",
+      "Yes. Since our eSIMs operate on international roaming networks, they are compatible with non-PTA registered devices - just like any international SIM card works when roaming. This makes ESIMConnections a convenient data solution for non-PTA phones in Pakistan.",
   },
   {
     question: "How do I activate my eSIM?",
     answer:
-      "After purchasing a plan, your eSIM QR code will be available in your Roamly eSIM dashboard under 'My eSIMs'. Go to your phone's Settings > Cellular/Mobile Data > Add eSIM or Add Data Plan. Scan the QR code from your dashboard, and your eSIM will be activated within minutes. We also provide step-by-step guides for popular phone models.",
+      "After purchasing a plan, your eSIM QR code will be available in your ESIMConnections dashboard under 'My eSIMs'. Go to your phone's Settings > Cellular/Mobile Data > Add eSIM or Add Data Plan. Scan the QR code from your dashboard, and your eSIM will be activated within minutes. We also provide step-by-step guides for popular phone models.",
   },
   {
     question: "What data plans do you offer?",
@@ -37,9 +37,9 @@ const faqs = [
       "Most modern smartphones support eSIM, including iPhone XR and newer, Samsung Galaxy S20 and newer, Google Pixel 3 and newer, and many other Android devices. Check your phone's settings for 'Add eSIM' or 'Add Data Plan' option to confirm compatibility.",
   },
   {
-    question: "Do Roamly eSIM eSIMs support voice calls and SMS?",
+    question: "Do ESIMConnections eSIMs support voice calls and SMS?",
     answer:
-      "No. Roamly eSIM eSIMs are data-only, which means they provide mobile internet access but do not support voice calls or SMS. If you need to make calls, you can use internet-based apps like WhatsApp, Zoom, or Skype over your data connection.",
+      "No. ESIMConnections eSIMs are data-only, which means they provide mobile internet access but do not support voice calls or SMS. If you need to make calls, you can use internet-based apps like WhatsApp, Zoom, or Skype over your data connection.",
   },
   {
     question: "What is your refund policy?",

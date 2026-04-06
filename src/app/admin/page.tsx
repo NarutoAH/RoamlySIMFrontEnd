@@ -65,7 +65,7 @@ export default function AdminPage() {
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Admin Dashboard</h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
-            Overview of your Roamly eSIM platform performance
+            Overview of your ESIMConnections platform performance
           </p>
         </div>
 

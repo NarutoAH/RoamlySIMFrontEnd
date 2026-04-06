@@ -1,4 +1,4 @@
-const CACHE_PREFIX = "roamly_order_";
+const CACHE_PREFIX = "esimconnections_order_";
 const CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 export interface CachedOrder {
@@ -35,7 +35,7 @@ export function saveOrder(order: CachedOrder): void {
   if (!recentIds.includes(order.orderId)) {
     recentIds.unshift(order.orderId);
     // Keep only last 20 orders
-    localStorage.setItem("roamly_recent_orders", JSON.stringify(recentIds.slice(0, 20)));
+    localStorage.setItem("esimconnections_recent_orders", JSON.stringify(recentIds.slice(0, 20)));
   }
 }
 
@@ -65,7 +65,7 @@ export function updateOrder(orderId: string, updates: Partial<CachedOrder>): voi
 function getRecentOrderIds(): string[] {
   if (typeof window === "undefined") return [];
   try {
-    return JSON.parse(localStorage.getItem("roamly_recent_orders") || "[]");
+    return JSON.parse(localStorage.getItem("esimconnections_recent_orders") || "[]");
   } catch {
     return [];
   }

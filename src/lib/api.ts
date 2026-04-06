@@ -84,7 +84,7 @@ export interface AdminStats {
 export async function sendOrderEmail(email: string, order: OrderResponse): Promise<void> {
   console.log("=== EMAIL SERVICE (MOCK) ===");
   console.log(`To: ${email}`);
-  console.log(`Subject: Your Roamly eSIM eSIM is ready - Order #${order.id}`);
+  console.log(`Subject: Your ESIMConnections eSIM is ready - Order #${order.id}`);
   console.log(`Plan: ${order.plan.name}`);
   console.log(`Activation Code: ${order.esim_activation_code || "N/A"}`);
   console.log(`SMDP Address: ${order.esim_smdp_address || "N/A"}`);

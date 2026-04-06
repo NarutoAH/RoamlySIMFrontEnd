@@ -48,7 +48,7 @@ export default function Features() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Why Choose <span className="text-emerald-600">Roamly eSIM</span>?
+            Why Choose <span className="text-emerald-600">ESIMConnections</span>?
           </h2>
           <p className="text-slate-500 text-lg max-w-2xl mx-auto">
             The simplest way to get international eSIM data plans for Pakistan,

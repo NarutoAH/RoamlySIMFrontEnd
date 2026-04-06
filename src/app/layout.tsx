@@ -10,10 +10,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Roamly eSIM - International eSIM for Pakistan, Middle East & Europe",
+  title: "ESIMConnections - International eSIM for Pakistan, Middle East & Europe",
   description:
     "Get international eSIM data plans for Pakistan, Saudi Arabia, UAE, Germany, and Spain. No physical SIM needed. Affordable plans starting from PKR 259.",
-  keywords: ["eSIM", "Pakistan", "Saudi Arabia", "UAE", "Germany", "Spain", "international eSIM", "non-PTA", "Roamly eSIM"],
+  keywords: ["eSIM", "Pakistan", "Saudi Arabia", "UAE", "Germany", "Spain", "international eSIM", "non-PTA", "ESIMConnections"],
 };
 
 export default function RootLayout({

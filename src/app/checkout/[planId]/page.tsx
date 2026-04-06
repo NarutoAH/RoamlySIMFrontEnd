@@ -41,7 +41,7 @@ function buildWhatsAppMessage(
   const priceUsd = `$${plan.price_usd.toFixed(2)}`;
   const pricePkr = `PKR ${convertToLocal(plan.price_usd, "PKR").toLocaleString()}`;
 
-  return `Hi! I'd like to order an eSIM plan from Roamly eSIM.
+  return `Hi! I'd like to order an eSIM plan from ESIMConnections.
 
 *My Details:*
 Name: ${userInfo.fullName}

@@ -13,9 +13,9 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">R</span>
+                <span className="text-white font-bold text-sm">E</span>
               </div>
-              <span className="text-white text-xl font-bold">Roamly</span>
+              <span className="text-white text-xl font-bold">ESIMConnections</span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-4">
               International eSIM platform for Pakistan, the Middle East,
@@ -90,7 +90,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-sm text-slate-400">
                 <Mail size={16} className="text-emerald-500 shrink-0" />
-                support@roamly.pk
+                support@esimconnections.com
               </li>
               <li className="flex items-center gap-3 text-sm text-slate-400">
                 <Phone size={16} className="text-emerald-500 shrink-0" />
@@ -106,7 +106,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} Roamly eSIM. All rights reserved.
+            &copy; {new Date().getFullYear()} ESIMConnections. All rights reserved.
           </p>
           <p className="text-sm text-slate-500">
             Made with care in Lahore, Pakistan
