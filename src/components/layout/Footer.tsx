@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -94,11 +94,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-sm text-slate-400">
                 <Phone size={16} className="text-emerald-500 shrink-0" />
-                +92 300 1234567
-              </li>
-              <li className="flex items-start gap-3 text-sm text-slate-400">
-                <MapPin size={16} className="text-emerald-500 shrink-0 mt-0.5" />
-                Lahore, Pakistan
+                +1 (407) 529-4527
               </li>
             </ul>
           </div>
@@ -109,7 +105,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} ESIMConnections. All rights reserved.
           </p>
           <p className="text-sm text-slate-500">
-            Made with care in Lahore, Pakistan
+            A product by Utomate AI LLC
           </p>
         </div>
       </div>

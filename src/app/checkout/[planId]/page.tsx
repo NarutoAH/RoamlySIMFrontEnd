@@ -219,7 +219,7 @@ export default function CheckoutPage() {
                     maxLength={20}
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+92 313 7186363"
+                    placeholder="+1 407 5294527"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
                   />
                   {errors.phone && (
