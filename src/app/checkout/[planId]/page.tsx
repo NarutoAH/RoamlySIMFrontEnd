@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, Mail, User, Phone, Wifi } from "lucide-react";
 import Button from "@/components/ui/Button";
@@ -271,8 +272,8 @@ export default function CheckoutPage() {
               </h2>
 
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center">
-                  <span className="text-xl">{country.flag}</span>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
+                  <Image src={country.flagImg} alt={country.name} width={40} height={40} className="object-cover w-full h-full rounded-xl" />
                 </div>
                 <div>
                   <p className="font-medium text-slate-900 dark:text-white">{plan.name}</p>

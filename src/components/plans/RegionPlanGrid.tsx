@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -82,7 +83,7 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
                   : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
               )}
             >
-              <span>{country.flag}</span>
+              <Image src={country.flagImg} alt={country.name} width={24} height={16} className="rounded-sm object-cover" />
               {country.name}
             </button>
           ))}
@@ -150,8 +151,8 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
                   </div>
                 )}
 
-                <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">{currentCountry?.flag}</span>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3 overflow-hidden">
+                  {currentCountry && <Image src={currentCountry.flagImg} alt={currentCountry.name} width={48} height={48} className="object-cover w-full h-full rounded-xl" />}
                 </div>
 
                 <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-1">{plan.name}</h3>

@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const planLinks = [
-  { href: "/plans/pakistan", label: "Pakistan", flag: "\u{1F1F5}\u{1F1F0}" },
-  { href: "/plans/middle-east", label: "Middle East", flag: "\u{1F30D}" },
-  { href: "/plans/europe", label: "Europe", flag: "\u{1F1EA}\u{1F1FA}" },
-  { href: "/plans/global", label: "Global", flag: "\u{1F310}" },
+  { href: "/plans/pakistan", label: "Pakistan", flagImg: "/flags/pk.png" },
+  { href: "/plans/middle-east", label: "Middle East", flagImg: "/flags/sa.png" },
+  { href: "/plans/europe", label: "Europe", flagImg: "/flags/de.png" },
+  { href: "/plans/global", label: "Global", flagImg: null },
 ];
 
 export default function Navbar() {
@@ -91,7 +91,7 @@ export default function Navbar() {
                       className="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
                       onClick={() => setPlansOpen(false)}
                     >
-                      <span>{link.flag}</span>
+                      {link.flagImg ? <Image src={link.flagImg} alt={link.label} width={20} height={14} className="rounded-sm object-cover" /> : <span>🌐</span>}
                       {link.label}
                     </Link>
                   ))}
@@ -148,7 +148,7 @@ export default function Navbar() {
                   className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm py-1.5"
                   onClick={() => setMobileOpen(false)}
                 >
-                  <span>{link.flag}</span>
+                  {link.flagImg ? <Image src={link.flagImg} alt={link.label} width={20} height={14} className="rounded-sm object-cover" /> : <span>🌐</span>}
                   {link.label}
                 </Link>
               ))}

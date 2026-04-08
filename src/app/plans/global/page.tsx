@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Globe as GlobeIcon } from "lucide-react";
 import { regions, countries } from "@/data/plans";
@@ -54,7 +55,13 @@ export default function GlobalPlansPage() {
             >
               <Link href={`/plans/${region.slug}`}>
                 <Card hover className="text-center group cursor-pointer">
-                  <div className="text-4xl mb-3">{region.flag}</div>
+                  <div className="flex justify-center gap-2 mb-3">
+                    {region.countries.map((c) => (
+                      <div key={c.code} className="w-10 h-7 rounded overflow-hidden">
+                        <Image src={c.flagImg} alt={c.name} width={40} height={28} className="object-cover w-full h-full" />
+                      </div>
+                    ))}
+                  </div>
                   <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 transition-colors">
                     {region.name}
                   </h3>
@@ -81,7 +88,7 @@ export default function GlobalPlansPage() {
                 key={c.code}
                 className="flex items-center gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full px-5 py-2.5"
               >
-                <span className="text-xl">{c.flag}</span>
+                <Image src={c.flagImg} alt={c.name} width={28} height={20} className="rounded-sm object-cover" />
                 <span className="text-sm font-medium text-slate-700 dark:text-slate-200">{c.name}</span>
                 <span className="w-2 h-2 bg-emerald-500 rounded-full" />
               </div>
@@ -104,6 +111,7 @@ export default function GlobalPlansPage() {
                 className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-2 opacity-60"
               >
                 <span className="text-lg">{c.flag}</span>
+
                 <span className="text-sm text-slate-500">{c.name}</span>
               </div>
             ))}

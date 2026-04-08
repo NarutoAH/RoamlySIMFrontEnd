@@ -2,16 +2,17 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Wifi, Shield, Zap, Globe } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 const supportedFlags = [
-  { flag: "\u{1F1F5}\u{1F1F0}", name: "Pakistan" },
-  { flag: "\u{1F1F8}\u{1F1E6}", name: "Saudi Arabia" },
-  { flag: "\u{1F1E6}\u{1F1EA}", name: "UAE" },
-  { flag: "\u{1F1E9}\u{1F1EA}", name: "Germany" },
-  { flag: "\u{1F1EA}\u{1F1F8}", name: "Spain" },
+  { flagImg: "/flags/pk.png", name: "Pakistan" },
+  { flagImg: "/flags/sa.png", name: "Saudi Arabia" },
+  { flagImg: "/flags/ae.png", name: "UAE" },
+  { flagImg: "/flags/de.png", name: "Germany" },
+  { flagImg: "/flags/es.png", name: "Spain" },
 ];
 
 export default function Hero() {
@@ -77,7 +78,7 @@ export default function Hero() {
                   className="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center"
                   title={c.name}
                 >
-                  <span className="text-lg">{c.flag}</span>
+                  <Image src={c.flagImg} alt={c.name} width={24} height={16} className="rounded-sm object-cover" />
                 </div>
               ))}
               <span className="text-sm text-slate-500 ml-1">+ more coming</span>

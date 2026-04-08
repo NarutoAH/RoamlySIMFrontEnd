@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import * as d3 from "d3";
@@ -191,17 +192,17 @@ export default function Globe() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { country: "Pakistan", flag: "\u{1F1F5}\u{1F1F0}", network: "Jazz" },
-                  { country: "Saudi Arabia", flag: "\u{1F1F8}\u{1F1E6}", network: "STC" },
-                  { country: "UAE", flag: "\u{1F1E6}\u{1F1EA}", network: "Etisalat" },
-                  { country: "Germany", flag: "\u{1F1E9}\u{1F1EA}", network: "Vodafone" },
-                  { country: "Spain", flag: "\u{1F1EA}\u{1F1F8}", network: "Movistar" },
+                  { country: "Pakistan", flagImg: "/flags/pk.png", network: "Jazz" },
+                  { country: "Saudi Arabia", flagImg: "/flags/sa.png", network: "STC" },
+                  { country: "UAE", flagImg: "/flags/ae.png", network: "Etisalat" },
+                  { country: "Germany", flagImg: "/flags/de.png", network: "Vodafone" },
+                  { country: "Spain", flagImg: "/flags/es.png", network: "Movistar" },
                 ].map((item) => (
                   <div
                     key={item.country}
                     className="flex items-center gap-2 text-sm text-slate-300"
                   >
-                    <span>{item.flag}</span>
+                    <Image src={item.flagImg} alt={item.country} width={22} height={15} className="rounded-sm object-cover" />
                     {item.country}
                   </div>
                 ))}
