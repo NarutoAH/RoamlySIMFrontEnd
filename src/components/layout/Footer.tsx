@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Twitter, Instagram, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
@@ -12,9 +13,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">E</span>
-              </div>
+              <Image src="/logo.png" alt="ESIMConnections" width={36} height={36} className="rounded-lg" />
               <span className="text-white text-xl font-bold">ESIMConnections</span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-4">

@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   description:
     "Get international eSIM data plans for Pakistan, Saudi Arabia, UAE, Germany, and Spain. No physical SIM needed. Affordable plans starting from PKR 259.",
   keywords: ["eSIM", "Pakistan", "Saudi Arabia", "UAE", "Germany", "Spain", "international eSIM", "non-PTA", "ESIMConnections"],
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
