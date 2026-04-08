@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { PostHogProvider } from "./providers";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -35,9 +36,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} antialiased bg-[#FAFAF7] text-slate-900 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300`}>
-        <Navbar />
-        <main className="min-h-screen pt-16">{children}</main>
-        <Footer />
+        <PostHogProvider>
+          <Navbar />
+          <main className="min-h-screen pt-16">{children}</main>
+          <Footer />
+        </PostHogProvider>
       </body>
     </html>
   );
