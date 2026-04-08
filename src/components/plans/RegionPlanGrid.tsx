@@ -26,9 +26,10 @@ interface RegionPlanGridProps {
   countriesWithPlans: { country: CountryInfo; plans: Plan[] }[];
   currency: Currency;
   onCurrencyChange: (c: Currency) => void;
+  showCurrencyToggle?: boolean;
 }
 
-export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrencyChange }: RegionPlanGridProps) {
+export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrencyChange, showCurrencyToggle = true }: RegionPlanGridProps) {
   const router = useRouter();
   const [activeCountry, setActiveCountry] = useState(countriesWithPlans[0]?.country.code || "");
   const [activeType, setActiveType] = useState("all");
@@ -50,6 +51,7 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
   return (
     <div>
       {/* Currency Toggle */}
+      {showCurrencyToggle && (
       <div className="flex justify-center mb-6">
         <div className="inline-flex bg-white dark:bg-slate-800 rounded-full p-1 border border-slate-200 dark:border-slate-700">
           {(["PKR", "USD"] as Currency[]).map((c) => (
@@ -68,6 +70,7 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
           ))}
         </div>
       </div>
+      )}
 
       {/* Country Tabs (if multiple countries in region) */}
       {countriesWithPlans.length > 1 && (

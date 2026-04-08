@@ -14,9 +14,10 @@ interface RegionPlansPageProps {
   regionSlug?: string;
   notice?: React.ReactNode;
   defaultCurrency?: Currency;
+  showCurrencyToggle?: boolean;
 }
 
-export default function RegionPlansPage({ title, subtitle, countriesWithPlans, regionSlug, notice, defaultCurrency = "USD" }: RegionPlansPageProps) {
+export default function RegionPlansPage({ title, subtitle, countriesWithPlans, regionSlug, notice, defaultCurrency = "USD", showCurrencyToggle = false }: RegionPlansPageProps) {
   const [currency, setCurrency] = useState<Currency>(defaultCurrency);
   const [livePlans, setLivePlans] = useState(countriesWithPlans);
 
@@ -61,6 +62,7 @@ export default function RegionPlansPage({ title, subtitle, countriesWithPlans, r
           countriesWithPlans={livePlans}
           currency={currency}
           onCurrencyChange={setCurrency}
+          showCurrencyToggle={showCurrencyToggle}
         />
       </div>
     </section>

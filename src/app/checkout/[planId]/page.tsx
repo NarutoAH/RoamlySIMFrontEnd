@@ -306,7 +306,8 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Currency Toggle */}
+              {/* Currency Toggle - only for Pakistan */}
+              {country.code === "pk" && (
               <div className="flex justify-center my-4">
                 <div className="inline-flex bg-slate-100 dark:bg-slate-700 rounded-full p-0.5">
                   {(["USD", "PKR"] as Currency[]).map((c) => (
@@ -324,6 +325,7 @@ export default function CheckoutPage() {
                   ))}
                 </div>
               </div>
+              )}
 
               <div className="flex justify-between items-center pt-2">
                 <span className="text-base font-semibold text-slate-900 dark:text-white">Total</span>

@@ -33,6 +33,7 @@ export default function PakistanPlansPage() {
       regionSlug="pakistan"
       notice={nonPtaNotice}
       defaultCurrency="PKR"
+      showCurrencyToggle={true}
     />
   );
 }
