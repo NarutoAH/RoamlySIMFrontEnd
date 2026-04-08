@@ -50,7 +50,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logo.png" alt="ESIMConnections" width={36} height={36} className="rounded-lg" />
+            <Image src="/logo.png" alt="ESIMConnections" width={44} height={44} className="rounded-lg" />
             <span className="text-white text-xl font-bold tracking-tight">
               ESIMConnections
             </span>

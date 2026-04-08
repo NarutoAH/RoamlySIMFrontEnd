@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
@@ -10,28 +11,28 @@ import Card from "@/components/ui/Card";
 const featuredPlans = [
   {
     region: "Pakistan",
-    flag: "\u{1F1F5}\u{1F1F0}",
+    flagImg: "/flags/pk.png",
     name: "5 GB - 7 Days",
     price: "PKR 1,630",
     link: "/plans/pakistan",
   },
   {
     region: "Saudi Arabia",
-    flag: "\u{1F1F8}\u{1F1E6}",
+    flagImg: "/flags/sa.png",
     name: "5 GB - 7 Days",
     price: "$9.38",
     link: "/plans/middle-east",
   },
   {
     region: "Germany",
-    flag: "\u{1F1E9}\u{1F1EA}",
+    flagImg: "/flags/de.png",
     name: "5 GB - 7 Days",
     price: "$3.28",
     link: "/plans/europe",
   },
   {
     region: "UAE",
-    flag: "\u{1F1E6}\u{1F1EA}",
+    flagImg: "/flags/ae.png",
     name: "5 GB - 7 Days",
     price: "$11.21",
     link: "/plans/middle-east",
@@ -69,8 +70,8 @@ export default function PlanPreview() {
             >
               <Link href={plan.link}>
                 <Card hover className="text-center group cursor-pointer">
-                  <div className="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <span className="text-3xl">{plan.flag}</span>
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 overflow-hidden">
+                    <Image src={plan.flagImg} alt={plan.region} width={56} height={38} className="object-cover w-full h-full rounded-xl" />
                   </div>
 
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1 group-hover:text-emerald-600 transition-colors">

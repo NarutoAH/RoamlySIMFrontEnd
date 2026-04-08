@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { regions, plansByCountry } from "@/data/plans";
@@ -48,12 +49,18 @@ export default function PlansPage() {
               >
                 <Link href={`/plans/${region.slug}`}>
                   <Card hover className="text-center group cursor-pointer h-full">
-                    <div className="text-5xl mb-4">{region.flag}</div>
+                    <div className="flex justify-center gap-2 mb-4">
+                      {region.countries.map((c) => (
+                        <div key={c.code} className="w-14 h-10 rounded-lg overflow-hidden">
+                          <Image src={c.flagImg} alt={c.name} width={56} height={40} className="object-cover w-full h-full" />
+                        </div>
+                      ))}
+                    </div>
                     <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 transition-colors">
                       {region.name}
                     </h2>
                     <p className="text-sm text-slate-400 mb-1">
-                      {region.countries.map((c) => `${c.flag} ${c.name}`).join("  ·  ")}
+                      {region.countries.map((c) => c.name).join("  ·  ")}
                     </p>
                     <p className="text-sm text-slate-400 mb-4">
                       {allPlans.length} plans available

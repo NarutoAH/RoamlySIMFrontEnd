@@ -17,6 +17,7 @@ export interface CountryInfo {
   code: string;
   name: string;
   flag: string;
+  flagImg: string;
   iso: string;
 }
 
@@ -29,11 +30,11 @@ export interface Region {
 }
 
 export const countries: Record<string, CountryInfo> = {
-  pk: { code: "pk", name: "Pakistan", flag: "🇵🇰", iso: "PK" },
-  ksa: { code: "ksa", name: "Saudi Arabia", flag: "🇸🇦", iso: "SA" },
-  uae: { code: "uae", name: "UAE", flag: "🇦🇪", iso: "AE" },
-  de: { code: "de", name: "Germany", flag: "🇩🇪", iso: "DE" },
-  es: { code: "es", name: "Spain", flag: "🇪🇸", iso: "ES" },
+  pk: { code: "pk", name: "Pakistan", flag: "🇵🇰", flagImg: "/flags/pk.png", iso: "PK" },
+  ksa: { code: "ksa", name: "Saudi Arabia", flag: "🇸🇦", flagImg: "/flags/sa.png", iso: "SA" },
+  uae: { code: "uae", name: "UAE", flag: "🇦🇪", flagImg: "/flags/ae.png", iso: "AE" },
+  de: { code: "de", name: "Germany", flag: "🇩🇪", flagImg: "/flags/de.png", iso: "DE" },
+  es: { code: "es", name: "Spain", flag: "🇪🇸", flagImg: "/flags/es.png", iso: "ES" },
 };
 
 export const regions: Region[] = [
