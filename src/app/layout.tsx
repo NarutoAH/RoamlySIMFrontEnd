@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { PostHogProvider } from "./providers";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({
           <main className="min-h-screen pt-16">{children}</main>
           <Footer />
         </PostHogProvider>
+        <Analytics />
       </body>
     </html>
   );
