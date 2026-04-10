@@ -8,9 +8,9 @@ import Card from "@/components/ui/Card";
 const features = [
   {
     icon: Zap,
-    title: "Instant Activation",
+    title: "Quick Activation",
     description:
-      "Get your eSIM activated within minutes after purchase. No waiting, no store visits. Scan the QR code and you're online.",
+      "Order via WhatsApp, pay via bank transfer, and receive your eSIM QR code on WhatsApp. Scan the code and you're online.",
     color: "bg-amber-500/10 text-amber-500",
   },
   {

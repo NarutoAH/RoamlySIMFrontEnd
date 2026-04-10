@@ -77,7 +77,7 @@ export default function OrderConfirmationPage() {
           <AlertCircle size={48} className="text-slate-300 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Order Not Found</h2>
           <p className="text-slate-500 mb-4">
-            This order may have expired from cache. If you received an email with your eSIM details, please check there.
+            This order may have expired from cache. If you received your eSIM details via WhatsApp, please check there.
           </p>
           <Link href="/plans">
             <Button size="sm">Browse Plans</Button>
@@ -125,7 +125,7 @@ export default function OrderConfirmationPage() {
                 Scan the QR code below to activate your eSIM.
                 {order.email && (
                   <>
-                    {" "}We also sent the details to <strong className="text-slate-700 dark:text-slate-300">{order.email}</strong>.
+                    {" "}Your eSIM details were also shared via WhatsApp.
                   </>
                 )}
               </p>
@@ -329,7 +329,7 @@ export default function OrderConfirmationPage() {
             className="text-center text-sm text-slate-400 flex items-center justify-center gap-2"
           >
             <Mail size={14} />
-            A copy of your eSIM details was sent to {order.email}
+            Your eSIM details were shared via WhatsApp
           </motion.div>
         )}
       </div>

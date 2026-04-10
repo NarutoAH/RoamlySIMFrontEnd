@@ -24,7 +24,7 @@ const faqs = [
   {
     question: "How do I activate my eSIM?",
     answer:
-      "After purchasing a plan, your eSIM QR code will be available in your ESIMConnections dashboard under 'My eSIMs'. Go to your phone's Settings > Cellular/Mobile Data > Add eSIM or Add Data Plan. Scan the QR code from your dashboard, and your eSIM will be activated within minutes. We also provide step-by-step guides for popular phone models.",
+      "After placing your order via WhatsApp and completing payment, we will send your eSIM QR code directly to your WhatsApp. Go to your phone's Settings > Cellular/Mobile Data > Add eSIM or Add Data Plan. Scan the QR code, and your eSIM will be activated within minutes. We also provide step-by-step guides for popular phone models.",
   },
   {
     question: "What data plans do you offer?",

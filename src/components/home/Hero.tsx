@@ -62,7 +62,7 @@ export default function Hero() {
             >
               Get data-only eSIM plans for Pakistan, Saudi Arabia, UAE,
               Germany, and Spain. No physical SIM needed, no voice or SMS - just
-              fast, reliable mobile data. Activate in minutes wherever you are.
+              fast, reliable mobile data. Order via WhatsApp and get connected.
             </motion.p>
 
             {/* Supported country flags */}
@@ -113,7 +113,7 @@ export default function Hero() {
               className="flex flex-wrap gap-6"
             >
               {[
-                { icon: Zap, text: "Instant Activation" },
+                { icon: Zap, text: "Quick Activation" },
                 { icon: Wifi, text: "Data Only - No Calls/SMS" },
                 { icon: Shield, text: "Secure & Reliable" },
               ].map((item, i) => (

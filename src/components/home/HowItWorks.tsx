@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Search, CreditCard, Wifi } from "lucide-react";
+import { Search, CreditCard, MessageCircle } from "lucide-react";
 
 const steps = [
   {
@@ -15,16 +15,16 @@ const steps = [
   {
     icon: CreditCard,
     step: "02",
-    title: "Pay & Receive eSIM",
+    title: "Pay via Bank Transfer",
     description:
-      "Pay securely via Paddle or bank transfer. Your international eSIM QR code will be available instantly in your dashboard.",
+      "Pay securely via bank transfer, JazzCash, or EasyPaisa. Payment details are shared via WhatsApp after you place your order.",
   },
   {
-    icon: Wifi,
+    icon: MessageCircle,
     step: "03",
-    title: "Activate & Connect",
+    title: "Receive eSIM via WhatsApp",
     description:
-      "Scan the QR code in your phone's settings to install the eSIM. You'll be online in under 5 minutes.",
+      "Once payment is confirmed, your eSIM QR code and activation details are delivered directly to your WhatsApp.",
   },
 ];
 

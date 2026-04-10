@@ -246,7 +246,7 @@ export default function CheckoutPage() {
                   </span>
                   <span className="flex items-center gap-1">
                     <Wifi size={14} />
-                    Instant activation
+                    eSIM delivered via WhatsApp
                   </span>
                 </div>
 
