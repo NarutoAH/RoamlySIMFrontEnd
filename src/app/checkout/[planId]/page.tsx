@@ -57,7 +57,7 @@ Data: ${dataLabel}
 Duration: ${durationLabel}
 Type: ${getPlanTypeLabel(plan)}
 Network: ${plan.network}
-Price: ${priceUsd} (${pricePkr}) [was ${originalPriceUsd}]
+Price: ${priceUsd} (${pricePkr})${plan.original_price_usd > plan.price_usd ? ` [was ${originalPriceUsd}]` : ``}
 
 Please confirm my order. Thank you!`;
 }
@@ -331,9 +331,11 @@ export default function CheckoutPage() {
               <div className="flex justify-between items-center pt-2">
                 <span className="text-base font-semibold text-slate-900 dark:text-white">Total</span>
                 <div className="text-right">
-                  <span className="text-sm text-slate-400 line-through mr-2">
-                    {formatPrice(plan.original_price_usd, currency)}
-                  </span>
+                  {plan.original_price_usd > plan.price_usd && (
+                    <span className="text-sm text-slate-400 line-through mr-2">
+                      {formatPrice(plan.original_price_usd, currency)}
+                    </span>
+                  )}
                   <span className="text-2xl font-bold text-emerald-600">
                     {formatPrice(plan.price_usd, currency)}
                   </span>

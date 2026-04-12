@@ -58,7 +58,7 @@ export default function PlanPreview() {
             Popular Plans by Region
           </h2>
           <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Affordable data-only eSIM plans starting from just $0.87.
+            Affordable data-only eSIM plans starting from just $0.91.
             No voice or SMS - just reliable mobile data. Browse plans for your destination.
           </p>
         </motion.div>

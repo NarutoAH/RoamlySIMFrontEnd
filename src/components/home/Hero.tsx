@@ -167,7 +167,7 @@ export default function Hero() {
 
               {/* Floating badge */}
               <div className="absolute -top-4 -right-4 bg-amber-500 text-white rounded-xl px-4 py-2 shadow-lg shadow-amber-500/30">
-                <span className="text-sm font-bold">From $0.87</span>
+                <span className="text-sm font-bold">From $0.91</span>
               </div>
             </div>
           </motion.div>

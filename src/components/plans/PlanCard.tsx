@@ -87,9 +87,11 @@ export default function PlanCard({
         </p>
 
         <div className="mb-5 py-3 bg-slate-50 rounded-lg">
-          <div className="text-sm text-slate-400 line-through mb-0.5">
-            PKR {Math.round(original_price_pkr).toLocaleString()}
-          </div>
+          {popular && original_price_pkr > price_pkr && (
+            <div className="text-sm text-slate-400 line-through mb-0.5">
+              PKR {Math.round(original_price_pkr).toLocaleString()}
+            </div>
+          )}
           <span className="text-2xl font-bold text-emerald-600">
             PKR {Math.round(price_pkr).toLocaleString()}
           </span>
