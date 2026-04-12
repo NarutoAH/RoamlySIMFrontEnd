@@ -192,7 +192,7 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
                 </div>
 
                 <Button
-                  variant={plan.popular ? "primary" : "outline"}
+                  variant="primary"
                   size="sm"
                   className="w-full"
                   onClick={() => handleBuy(plan.id)}

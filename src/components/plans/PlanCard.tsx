@@ -91,7 +91,7 @@ export default function PlanCard({
         </div>
 
         <Button
-          variant={popular ? "primary" : "outline"}
+          variant="primary"
           size="sm"
           className="w-full"
           onClick={() => onBuy?.(id)}
