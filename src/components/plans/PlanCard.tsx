@@ -42,7 +42,7 @@ export default function PlanCard({
         hover
         className={`relative text-center ${
           popular
-            ? "border-2 border-emerald-500 shadow-lg shadow-emerald-500/10"
+            ? "border-2 border-emerald-500 shadow-lg shadow-emerald-500/10 scale-[1.02]"
             : ""
         }`}
       >
@@ -92,8 +92,8 @@ export default function PlanCard({
 
         <Button
           variant="primary"
-          size="sm"
-          className="w-full"
+          size={popular ? "md" : "sm"}
+          className={`w-full ${popular ? "animate-emerald-glow" : ""}`}
           onClick={() => onBuy?.(id)}
         >
           Buy Now

@@ -79,3 +79,17 @@ body {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* Popular plan button glow */
+@keyframes emerald-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px 0 rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 18px 4px rgba(16, 185, 129, 0.45);
+  }
+}
+
+.animate-emerald-glow {
+  animation: emerald-glow 2s ease-in-out infinite;
+}

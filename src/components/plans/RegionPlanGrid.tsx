@@ -145,7 +145,7 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
               <Card
                 hover
                 className={`relative text-center ${
-                  plan.popular ? "border-2 border-emerald-500 shadow-lg shadow-emerald-500/10" : ""
+                  plan.popular ? "border-2 border-emerald-500 shadow-lg shadow-emerald-500/10 scale-[1.02]" : ""
                 }`}
               >
                 {plan.popular && (
@@ -193,8 +193,8 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
 
                 <Button
                   variant="primary"
-                  size="sm"
-                  className="w-full"
+                  size={plan.popular ? "md" : "sm"}
+                  className={`w-full ${plan.popular ? "animate-emerald-glow" : ""}`}
                   onClick={() => handleBuy(plan.id)}
                 >
                   Buy Now
