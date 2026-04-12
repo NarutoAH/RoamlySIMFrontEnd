@@ -42,7 +42,7 @@ export default function PlanCard({
         hover
         className={`relative text-center ${
           popular
-            ? "border-2 border-emerald-500 shadow-lg shadow-emerald-500/10 scale-[1.02]"
+            ? "border-2 border-emerald-400 scale-[1.03] animate-card-glow"
             : ""
         }`}
       >

@@ -145,7 +145,7 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
               <Card
                 hover
                 className={`relative text-center ${
-                  plan.popular ? "border-2 border-emerald-500 shadow-lg shadow-emerald-500/10 scale-[1.02]" : ""
+                  plan.popular ? "border-2 border-emerald-400 scale-[1.03] animate-card-glow" : ""
                 }`}
               >
                 {plan.popular && (

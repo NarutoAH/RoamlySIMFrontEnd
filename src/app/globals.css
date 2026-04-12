@@ -83,13 +83,27 @@ body {
 /* Popular plan button glow */
 @keyframes emerald-glow {
   0%, 100% {
-    box-shadow: 0 0 8px 0 rgba(16, 185, 129, 0.3);
+    box-shadow: 0 4px 15px 0 rgba(16, 185, 129, 0.5);
   }
   50% {
-    box-shadow: 0 0 18px 4px rgba(16, 185, 129, 0.45);
+    box-shadow: 0 4px 25px 8px rgba(16, 185, 129, 0.7);
   }
 }
 
 .animate-emerald-glow {
   animation: emerald-glow 2s ease-in-out infinite;
+}
+
+/* Popular plan card glow */
+@keyframes card-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px 2px rgba(16, 185, 129, 0.15), 0 0 30px 5px rgba(16, 185, 129, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 25px 5px rgba(16, 185, 129, 0.25), 0 0 50px 10px rgba(16, 185, 129, 0.12);
+  }
+}
+
+.animate-card-glow {
+  animation: card-glow 3s ease-in-out infinite;
 }
