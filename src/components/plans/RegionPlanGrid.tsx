@@ -186,6 +186,9 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
                 </p>
 
                 <div className="mb-5 py-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
+                  <div className="text-sm text-slate-400 line-through mb-0.5">
+                    {formatPrice(plan.original_price_usd, currency)}
+                  </div>
                   <span className="text-2xl font-bold text-emerald-600">
                     {formatPrice(plan.price_usd, currency)}
                   </span>

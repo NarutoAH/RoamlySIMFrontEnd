@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "What data plans do you offer?",
     answer:
-      "We offer Limited, Unlimited, and Unlimited Plus data plans across all supported countries. Plan durations range from 1 day to 90 days. Prices start from $0.91 (for Europe) and PKR 419 (for Pakistan) and vary by region. All plans are data-only and provide 4G/LTE data through international roaming networks. Voice calls and SMS are not included.",
+      "We offer Limited, Unlimited, and Unlimited Plus data plans across all supported countries. Plan durations range from 1 day to 90 days. Prices start from $0.87 (for Europe) and PKR 400 (for Pakistan) and vary by region. All plans are data-only and provide 4G/LTE data through international roaming networks. Voice calls and SMS are not included.",
   },
   {
     question: "Which phones are compatible with eSIM?",

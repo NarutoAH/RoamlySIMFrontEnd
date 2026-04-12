@@ -18,6 +18,7 @@ interface BackendPlan {
   data_amount_gb: number;
   duration_days: number;
   price_usd: number;
+  original_price_usd: number | null;
   country_code: string;
   plan_type: string;
   throttle: string | null;
@@ -33,6 +34,7 @@ function toFrontendPlan(bp: BackendPlan): Plan {
     data_gb: bp.data_amount_gb,
     duration_days: bp.duration_days,
     price_usd: bp.price_usd,
+    original_price_usd: bp.original_price_usd || bp.price_usd,
     popular: bp.popular,
     type: bp.plan_type as Plan["type"],
     throttle: bp.throttle || null,

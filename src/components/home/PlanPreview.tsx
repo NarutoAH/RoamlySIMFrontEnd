@@ -13,28 +13,32 @@ const featuredPlans = [
     region: "Pakistan",
     flagImg: "/flags/pk.png",
     name: "5 GB - 7 Days",
-    price: "PKR 1,630",
+    price: "PKR 1,556",
+    originalPrice: "PKR 1,778",
     link: "/plans/pakistan",
   },
   {
     region: "Saudi Arabia",
     flagImg: "/flags/sa.png",
     name: "5 GB - 7 Days",
-    price: "$9.38",
+    price: "$8.95",
+    originalPrice: "$10.23",
     link: "/plans/middle-east",
   },
   {
     region: "Germany",
     flagImg: "/flags/de.png",
     name: "5 GB - 7 Days",
-    price: "$3.28",
+    price: "$3.13",
+    originalPrice: "$3.58",
     link: "/plans/europe",
   },
   {
     region: "UAE",
     flagImg: "/flags/ae.png",
     name: "5 GB - 7 Days",
-    price: "$11.21",
+    price: "$10.70",
+    originalPrice: "$12.23",
     link: "/plans/middle-east",
   },
 ];
@@ -54,7 +58,7 @@ export default function PlanPreview() {
             Popular Plans by Region
           </h2>
           <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Affordable data-only eSIM plans starting from just $0.91.
+            Affordable data-only eSIM plans starting from just $0.87.
             No voice or SMS - just reliable mobile data. Browse plans for your destination.
           </p>
         </motion.div>
@@ -81,7 +85,10 @@ export default function PlanPreview() {
 
                   <div className="mb-5 py-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
                     <span className="text-sm text-slate-400">from</span>
-                    <span className="text-xl font-bold text-emerald-600 ml-2">
+                    <span className="text-sm text-slate-400 line-through ml-2">
+                      {plan.originalPrice}
+                    </span>
+                    <span className="text-xl font-bold text-emerald-600 ml-1.5">
                       {plan.price}
                     </span>
                   </div>

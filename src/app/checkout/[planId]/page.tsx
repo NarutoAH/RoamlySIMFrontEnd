@@ -40,6 +40,7 @@ function buildWhatsAppMessage(
   const dataLabel = isUnlimited ? "Unlimited" : `${plan.data_gb} GB`;
   const durationLabel = `${plan.duration_days} ${plan.duration_days === 1 ? "Day" : "Days"}`;
   const priceUsd = `$${plan.price_usd.toFixed(2)}`;
+  const originalPriceUsd = `$${plan.original_price_usd.toFixed(2)}`;
   const pricePkr = `PKR ${convertToLocal(plan.price_usd, "PKR").toLocaleString()}`;
 
   return `Hi! I'd like to order an eSIM plan from ESIMConnections.
@@ -56,7 +57,7 @@ Data: ${dataLabel}
 Duration: ${durationLabel}
 Type: ${getPlanTypeLabel(plan)}
 Network: ${plan.network}
-Price: ${priceUsd} (${pricePkr})
+Price: ${priceUsd} (${pricePkr}) [was ${originalPriceUsd}]
 
 Please confirm my order. Thank you!`;
 }
@@ -329,9 +330,14 @@ export default function CheckoutPage() {
 
               <div className="flex justify-between items-center pt-2">
                 <span className="text-base font-semibold text-slate-900 dark:text-white">Total</span>
-                <span className="text-2xl font-bold text-emerald-600">
-                  {formatPrice(plan.price_usd, currency)}
-                </span>
+                <div className="text-right">
+                  <span className="text-sm text-slate-400 line-through mr-2">
+                    {formatPrice(plan.original_price_usd, currency)}
+                  </span>
+                  <span className="text-2xl font-bold text-emerald-600">
+                    {formatPrice(plan.price_usd, currency)}
+                  </span>
+                </div>
               </div>
             </Card>
           </motion.div>
