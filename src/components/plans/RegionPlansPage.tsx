@@ -1,34 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import RegionPlanGrid from "./RegionPlanGrid";
-import type { Plan, CountryInfo } from "@/data/plans";
+import type { CountryInfo, Plan } from "@/data/plans";
 import type { Currency } from "@/lib/currency";
-import { fetchPlansForRegion } from "@/lib/plans-api";
 
 interface RegionPlansPageProps {
   title: string;
   subtitle: string;
   countriesWithPlans: { country: CountryInfo; plans: Plan[] }[];
-  regionSlug?: string;
   notice?: React.ReactNode;
   defaultCurrency?: Currency;
   showCurrencyToggle?: boolean;
 }
 
-export default function RegionPlansPage({ title, subtitle, countriesWithPlans, regionSlug, notice, defaultCurrency = "USD", showCurrencyToggle = false }: RegionPlansPageProps) {
+export default function RegionPlansPage({ title, subtitle, countriesWithPlans, notice, defaultCurrency = "USD", showCurrencyToggle = false }: RegionPlansPageProps) {
   const [currency, setCurrency] = useState<Currency>(defaultCurrency);
-  const [livePlans, setLivePlans] = useState(countriesWithPlans);
-
-  useEffect(() => {
-    if (!regionSlug) return;
-    fetchPlansForRegion(regionSlug).then((result) => {
-      if (result.length > 0 && result.some((r) => r.plans.length > 0)) {
-        setLivePlans(result);
-      }
-    });
-  }, [regionSlug]);
 
   return (
     <section className="py-12 bg-[#FAFAF7] dark:bg-slate-950 min-h-screen">
@@ -59,7 +47,7 @@ export default function RegionPlansPage({ title, subtitle, countriesWithPlans, r
         )}
 
         <RegionPlanGrid
-          countriesWithPlans={livePlans}
+          countriesWithPlans={countriesWithPlans}
           currency={currency}
           onCurrencyChange={setCurrency}
           showCurrencyToggle={showCurrencyToggle}

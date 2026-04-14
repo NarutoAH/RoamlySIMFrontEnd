@@ -12,7 +12,6 @@ export default function EuropePlansPage() {
       title="Europe eSIM Plans"
       subtitle="Stay connected in Germany and Spain with affordable international eSIM data plans."
       countriesWithPlans={countriesWithPlans}
-      regionSlug="europe"
     />
   );
 }

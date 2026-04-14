@@ -12,7 +12,6 @@ export default function MiddleEastPlansPage() {
       title="Middle East eSIM Plans"
       subtitle="Stay connected in Saudi Arabia and the UAE with affordable international eSIM data plans."
       countriesWithPlans={countriesWithPlans}
-      regionSlug="middle-east"
     />
   );
 }
