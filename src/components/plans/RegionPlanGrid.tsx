@@ -11,7 +11,10 @@ import { WHATSAPP_BUSINESS_NUMBER } from "@/lib/config";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 
-const CHEAPEST_COUNT = 2;
+// Durations to feature in the initial view (cheapest plan per bucket)
+const FEATURED_DURATIONS = [3, 7, 15, 30];
+// Specific high-value plan to always include: 20GB / 30 days
+const FEATURED_SPECIAL = { data_gb: 20, duration_days: 30 };
 
 const typeTabs = [
   { label: "All", value: "all" },
@@ -79,28 +82,33 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
   const currentCountry = currentCountryData?.country;
   const durationTabs = getDurationTabs(currentPlans);
 
-  // Curated initial view: 2 cheapest overall + cheapest per duration bucket
+  // Curated initial view: cheapest overall + cheapest per key duration + 20GB/30d value plan
   const featuredPlans = useMemo(() => {
     if (currentPlans.length === 0) return [];
     const sorted = [...currentPlans].sort((a, b) => a.price_usd - b.price_usd);
     const picked = new Set<string>();
     const result: Plan[] = [];
 
-    // Add the 2 cheapest plans
-    for (const plan of sorted) {
-      if (result.length >= CHEAPEST_COUNT) break;
-      picked.add(plan.id);
-      result.push(plan);
-    }
+    // 1. Add the overall cheapest plan
+    picked.add(sorted[0].id);
+    result.push(sorted[0]);
 
-    // Add cheapest plan per duration bucket (skip if already picked)
-    const durations = [...new Set(currentPlans.map((p) => p.duration_days))].sort((a, b) => a - b);
-    for (const dur of durations) {
+    // 2. Add cheapest plan for each featured duration
+    for (const dur of FEATURED_DURATIONS) {
       const cheapest = sorted.find((p) => p.duration_days === dur && !picked.has(p.id));
       if (cheapest) {
         picked.add(cheapest.id);
         result.push(cheapest);
       }
+    }
+
+    // 3. Add the specific high-value plan (20GB / 30 days)
+    const special = sorted.find(
+      (p) => p.data_gb === FEATURED_SPECIAL.data_gb && p.duration_days === FEATURED_SPECIAL.duration_days && !picked.has(p.id)
+    );
+    if (special) {
+      picked.add(special.id);
+      result.push(special);
     }
 
     return result.sort((a, b) => a.price_usd - b.price_usd);

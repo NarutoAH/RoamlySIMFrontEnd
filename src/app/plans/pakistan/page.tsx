@@ -1,29 +1,14 @@
 "use client";
 
 import React from "react";
-import { Info, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import RegionPlansPage from "@/components/plans/RegionPlansPage";
 import { getPlansForRegion } from "@/data/plans";
 
 const countriesWithPlans = getPlansForRegion("pakistan");
 
-const nonPtaNotice = (
-  <div className="space-y-3 max-w-2xl mx-auto">
-    <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-2xl px-6 py-4 flex gap-3 items-start">
-      <Info size={20} className="text-emerald-600 shrink-0 mt-0.5" />
-      <div>
-        <p className="text-sm text-emerald-900 dark:text-emerald-300 font-medium mb-1">
-          Works on non-PTA phones
-        </p>
-        <p className="text-sm text-emerald-700 dark:text-emerald-400 leading-relaxed">
-          ESIMConnections provides international eSIMs that connect via international
-          roaming networks. Since these are international SIMs, they are
-          compatible with non-PTA registered devices - just like any other
-          international SIM card would be when roaming in Pakistan.
-        </p>
-      </div>
-    </div>
-
+const guaranteeNotice = (
+  <div className="max-w-2xl mx-auto">
     <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-2xl px-6 py-4 flex gap-3 items-start">
       <ShieldCheck size={20} className="text-amber-600 shrink-0 mt-0.5" />
       <div>
@@ -45,7 +30,7 @@ export default function PakistanPlansPage() {
       title="Pakistan eSIM Plans"
       subtitle="Affordable international eSIM data plans for Pakistan. Powered by Jazz network."
       countriesWithPlans={countriesWithPlans}
-      notice={nonPtaNotice}
+      notice={guaranteeNotice}
       defaultCurrency="PKR"
       showCurrencyToggle={true}
     />
