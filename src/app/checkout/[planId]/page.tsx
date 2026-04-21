@@ -11,7 +11,7 @@ import Card from "@/components/ui/Card";
 import { plansByCountry, countries, type Plan, type CountryInfo } from "@/data/plans";
 import { formatPrice, convertToLocal, type Currency } from "@/lib/currency";
 import { WHATSAPP_BUSINESS_NUMBER } from "@/lib/config";
-import { trackInitiateCheckout, trackViewContent } from "@/lib/tiktok";
+import { identify, trackInitiateCheckout, trackPlaceAnOrder, trackViewContent } from "@/lib/tiktok";
 
 function findPlan(planId: string): { plan: Plan; countryCode: string } | null {
   for (const [code, plans] of Object.entries(plansByCountry)) {
@@ -138,16 +138,20 @@ export default function CheckoutPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validate()) return;
 
-    trackInitiateCheckout({
+    await identify({ email: email.trim(), phone: phone.trim() });
+
+    const planPayload = {
       planId: plan.id,
       planName: plan.name,
       priceUsd: plan.price_usd,
-    });
+    };
+    trackInitiateCheckout(planPayload);
+    trackPlaceAnOrder(planPayload);
 
     const message = buildWhatsAppMessage(
       { fullName: fullName.trim(), email: email.trim(), phone: phone.trim() },
