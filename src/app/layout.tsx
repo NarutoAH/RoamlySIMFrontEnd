@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { PostHogProvider } from "./providers";
 import { Analytics } from "@vercel/analytics/next";
+import TikTokPixel from "@/components/TikTokPixel";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({
           <main className="min-h-screen pt-16">{children}</main>
           <Footer />
         </PostHogProvider>
+        <TikTokPixel />
         <Analytics />
       </body>
     </html>

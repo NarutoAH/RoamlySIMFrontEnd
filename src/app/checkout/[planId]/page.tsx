@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,6 +11,7 @@ import Card from "@/components/ui/Card";
 import { plansByCountry, countries, type Plan, type CountryInfo } from "@/data/plans";
 import { formatPrice, convertToLocal, type Currency } from "@/lib/currency";
 import { WHATSAPP_BUSINESS_NUMBER } from "@/lib/config";
+import { trackInitiateCheckout, trackViewContent } from "@/lib/tiktok";
 
 function findPlan(planId: string): { plan: Plan; countryCode: string } | null {
   for (const [code, plans] of Object.entries(plansByCountry)) {
@@ -82,6 +83,15 @@ export default function CheckoutPage() {
   const [errors, setErrors] = useState<{ fullName?: string; email?: string; phone?: string }>({});
   const [currency, setCurrency] = useState<Currency>("USD");
 
+  useEffect(() => {
+    if (!result) return;
+    trackViewContent({
+      planId: result.plan.id,
+      planName: result.plan.name,
+      priceUsd: result.plan.price_usd,
+    });
+  }, [result]);
+
   if (!result) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -132,6 +142,12 @@ export default function CheckoutPage() {
     e.preventDefault();
 
     if (!validate()) return;
+
+    trackInitiateCheckout({
+      planId: plan.id,
+      planName: plan.name,
+      priceUsd: plan.price_usd,
+    });
 
     const message = buildWhatsAppMessage(
       { fullName: fullName.trim(), email: email.trim(), phone: phone.trim() },

@@ -10,6 +10,7 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { getOrder, type CachedOrder } from "@/lib/orderCache";
 import { api } from "@/lib/api";
+import { trackCompletePayment } from "@/lib/tiktok";
 
 export default function OrderConfirmationPage() {
   const params = useParams();
@@ -55,6 +56,17 @@ export default function OrderConfirmationPage() {
       })
       .finally(() => setLoading(false));
   }, [orderId]);
+
+  useEffect(() => {
+    if (!order) return;
+    if (order.status !== "active") return;
+    trackCompletePayment({
+      orderId: order.orderId,
+      planId: order.planId,
+      planName: order.planName,
+      priceUsd: order.priceUsd,
+    });
+  }, [order]);
 
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
