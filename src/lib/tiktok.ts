@@ -7,6 +7,7 @@ type TikTokContent = {
 };
 
 type TikTokEventData = {
+  event_id?: string;
   value?: number;
   currency?: string;
   contents?: TikTokContent[];
@@ -103,10 +104,21 @@ function buildContents(plan: PlanPayload): TikTokEventData {
   };
 }
 
+// Per-tab dedup so scrolling the same grid does not fire ViewContent repeatedly
+const viewedPlanIds = new Set<string>();
+
 export function trackViewContent(plan: PlanPayload) {
   const ttq = getTtq();
   if (!ttq) return;
+  if (viewedPlanIds.has(plan.planId)) return;
+  viewedPlanIds.add(plan.planId);
   ttq.track("ViewContent", buildContents(plan));
+}
+
+export function trackAddToCart(plan: PlanPayload) {
+  const ttq = getTtq();
+  if (!ttq) return;
+  ttq.track("AddToCart", buildContents(plan));
 }
 
 export function trackInitiateCheckout(plan: PlanPayload) {
@@ -154,5 +166,9 @@ export function trackPurchase(params: PlanPayload & { orderId: string }) {
   if (typeof window === "undefined") return;
   if (alreadyFired(params.orderId)) return;
   rememberFired(params.orderId);
-  ttq.track("Purchase", buildContents(params));
+  const data = buildContents(params);
+  // Deterministic event_id so server-side Events API postback (when added) can
+  // dedupe against this browser event by matching on the same orderId.
+  data.event_id = `purchase_${params.orderId}`;
+  ttq.track("Purchase", data);
 }

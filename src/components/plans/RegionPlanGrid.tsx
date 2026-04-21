@@ -10,6 +10,12 @@ import type { Plan, CountryInfo } from "@/data/plans";
 import { WHATSAPP_BUSINESS_NUMBER } from "@/lib/config";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
+import {
+  trackAddToCart,
+  trackInitiateCheckout,
+  trackPlaceAnOrder,
+  trackViewContent,
+} from "@/lib/tiktok";
 
 // Durations to feature in the initial view (cheapest plan per bucket)
 const FEATURED_DURATIONS = [3, 7, 15, 30];
@@ -247,7 +253,14 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
               key={plan.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.5 }}
+              onViewportEnter={() =>
+                trackViewContent({
+                  planId: plan.id,
+                  planName: plan.name,
+                  priceUsd: plan.price_usd,
+                })
+              }
               transition={{ duration: 0.4 }}
             >
               <Card
@@ -310,6 +323,16 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
+                    onClick={() => {
+                      const planPayload = {
+                        planId: plan.id,
+                        planName: plan.name,
+                        priceUsd: plan.price_usd,
+                      };
+                      trackAddToCart(planPayload);
+                      trackInitiateCheckout(planPayload);
+                      trackPlaceAnOrder(planPayload);
+                    }}
                   >
                     <Button
                       variant="primary"
