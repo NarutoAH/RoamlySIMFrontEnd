@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, MessageCircle } from "lucide-react";
+import { ChevronDown, MessageCircle, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatPrice, convertToLocal, type Currency } from "@/lib/currency";
 import type { Plan, CountryInfo } from "@/data/plans";
@@ -125,13 +125,6 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
 
   const displayedPlans = showAll ? filteredPlans : featuredPlans;
 
-  const handleBuy = (plan: Plan) => {
-    if (!currentCountry) return;
-    const url = buildWhatsAppUrl(plan, currentCountry, currency);
-    const win = window.open(url, "_blank");
-    if (!win) window.location.href = url;
-  };
-
   return (
     <div>
       {/* Currency Toggle */}
@@ -177,10 +170,24 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
         </div>
       )}
 
-      {/* WhatsApp ordering info */}
-      <div className="flex items-center justify-center gap-2 mb-6 text-sm text-slate-500 dark:text-slate-400">
-        <MessageCircle size={14} className="text-[#25D366]" />
-        <span>Tapping <strong>Buy Now</strong> opens WhatsApp for quick ordering and eSIM delivery</span>
+      {/* WhatsApp ordering info + email fallback */}
+      <div className="flex flex-col items-center gap-1.5 mb-6 text-sm text-slate-500 dark:text-slate-400">
+        <div className="flex items-center gap-2 text-center">
+          <MessageCircle size={14} className="text-[#25D366] shrink-0" />
+          <span>Tapping <strong>Buy Now</strong> opens WhatsApp for quick ordering and eSIM delivery</span>
+        </div>
+        <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
+          <Mail size={12} className="shrink-0" />
+          <span>
+            WhatsApp not working? Email us at{" "}
+            <a
+              href="mailto:support@esimconnections.com"
+              className="text-emerald-600 hover:text-emerald-700 font-medium underline underline-offset-2"
+            >
+              support@esimconnections.com
+            </a>
+          </span>
+        </div>
       </div>
 
       {/* Filters - only shown in expanded "all plans" view */}
@@ -297,14 +304,22 @@ export default function RegionPlanGrid({ countriesWithPlans, currency, onCurrenc
                   </span>
                 </div>
 
-                <Button
-                  variant="primary"
-                  size={plan.popular ? "md" : "sm"}
-                  className={`w-full ${plan.popular ? "animate-emerald-glow" : ""}`}
-                  onClick={() => handleBuy(plan)}
-                >
-                  Buy Now
-                </Button>
+                {currentCountry ? (
+                  <a
+                    href={buildWhatsAppUrl(plan, currentCountry, currency)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <Button
+                      variant="primary"
+                      size={plan.popular ? "md" : "sm"}
+                      className={`w-full ${plan.popular ? "animate-emerald-glow" : ""}`}
+                    >
+                      Buy Now
+                    </Button>
+                  </a>
+                ) : null}
               </Card>
             </motion.div>
           );
