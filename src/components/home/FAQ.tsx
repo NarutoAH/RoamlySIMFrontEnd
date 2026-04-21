@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "What is your refund policy?",
     answer:
-      "We guarantee our eSIMs work on non-PTA phones. If it doesn't connect on your device, you get a full refund. We also offer a full refund within 24 hours of purchase if the eSIM hasn't been activated. Once activated, we can offer a partial refund based on unused data within the first 3 days. Contact us via WhatsApp for refund requests.",
+      "We guarantee our eSIMs work on non-PTA phones. If it doesn't connect on your device, you get a full refund. We also offer a full refund within 24 hours of purchase if the eSIM hasn't been activated. Once activated, we can offer a partial refund based on unused data within the first 3 days. Contact us via WhatsApp or email support@esimconnections.com for refund requests.",
   },
 ];
 

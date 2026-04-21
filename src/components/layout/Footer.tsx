@@ -89,7 +89,12 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-sm text-slate-400">
                 <Mail size={16} className="text-emerald-500 shrink-0" />
-                esimconnections@gmail.com
+                <a
+                  href="mailto:support@esimconnections.com"
+                  className="hover:text-emerald-400 transition-colors"
+                >
+                  support@esimconnections.com
+                </a>
               </li>
               <li className="flex items-center gap-3 text-sm text-slate-400">
                 <Phone size={16} className="text-emerald-500 shrink-0" />
