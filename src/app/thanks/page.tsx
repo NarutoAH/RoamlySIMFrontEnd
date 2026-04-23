@@ -7,11 +7,11 @@ import { motion } from "framer-motion";
 import { CheckCircle, MessageCircle } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
-import { plansByCountry } from "@/data/plans";
+import { plansByCountry, type Plan } from "@/data/plans";
 import { identify, trackPurchase } from "@/lib/tiktok";
 import { WHATSAPP_BUSINESS_NUMBER } from "@/lib/config";
 
-function findPlan(planId: string) {
+function findPlanByUuid(planId: string): Plan | null {
   for (const plans of Object.values(plansByCountry)) {
     const plan = plans.find((p) => p.id === planId);
     if (plan) return plan;
@@ -19,16 +19,57 @@ function findPlan(planId: string) {
   return null;
 }
 
+type ThanksData = {
+  planId: string;
+  planName: string;
+  priceUsd: number;
+  orderId: string; // dedup key
+};
+
+function resolveThanksData(params: URLSearchParams): ThanksData | null {
+  const planParam = params.get("plan");
+  const amountParam = params.get("amount");
+  const nameParam = params.get("name");
+  const refParam = params.get("ref");
+
+  // Path A: `plan` is a real UUID from plans.ts -> use the full plan record
+  if (planParam) {
+    const plan = findPlanByUuid(planParam);
+    if (plan) {
+      const today = new Date().toISOString().slice(0, 10);
+      return {
+        planId: plan.id,
+        planName: plan.name,
+        priceUsd: plan.price_usd,
+        orderId: refParam || `${plan.id}_${today}`,
+      };
+    }
+  }
+
+  // Path B: explicit `amount` (preferred for admin use - no UUID required)
+  const amount = amountParam ? parseFloat(amountParam) : NaN;
+  if (Number.isFinite(amount) && amount > 0) {
+    const today = new Date().toISOString().slice(0, 10);
+    const planIdForEvent = planParam || nameParam || "esim-order";
+    return {
+      planId: planIdForEvent,
+      planName: nameParam || "eSIM Order",
+      priceUsd: amount,
+      orderId: refParam || `${planIdForEvent}_${amount}_${today}`,
+    };
+  }
+
+  return null;
+}
+
 function ThanksContent() {
   const params = useSearchParams();
-  const planId = params.get("plan");
   const email = params.get("email");
-  const ref = params.get("ref");
 
-  const plan = useMemo(() => (planId ? findPlan(planId) : null), [planId]);
+  const data = useMemo(() => resolveThanksData(params), [params]);
 
   useEffect(() => {
-    if (!plan) return;
+    if (!data) return;
 
     let cancelled = false;
     (async () => {
@@ -36,29 +77,24 @@ function ThanksContent() {
         await identify({ email });
       }
       if (cancelled) return;
-
-      // Dedup key: prefer admin-supplied ref (unique per customer/order), else
-      // fall back to plan_YYYY-MM-DD so a refresh within the same day does not
-      // double-fire. Admins should pass ref=<unique> to guarantee correct
-      // attribution for multiple customers buying the same plan the same day.
-      const today = new Date().toISOString().slice(0, 10);
-      const dedupKey = ref || `${plan.id}_${today}`;
-
       trackPurchase({
-        orderId: dedupKey,
-        planId: plan.id,
-        planName: plan.name,
-        priceUsd: plan.price_usd,
+        orderId: data.orderId,
+        planId: data.planId,
+        planName: data.planName,
+        priceUsd: data.priceUsd,
       });
     })();
 
     return () => {
       cancelled = true;
     };
-  }, [plan, email, ref]);
+  }, [data, email]);
 
-  const isUnlimited = plan && plan.data_gb < 0;
-  const dataLabel = plan ? (isUnlimited ? "Unlimited" : `${plan.data_gb} GB`) : "";
+  // UI data: if we resolved a real plan via UUID, also pull data_gb/duration for display
+  const displayPlan = useMemo(() => {
+    const planParam = params.get("plan");
+    return planParam ? findPlanByUuid(planParam) : null;
+  }, [params]);
 
   return (
     <section className="min-h-screen py-12 bg-[#FAFAF7] dark:bg-slate-950 flex items-center">
@@ -80,28 +116,41 @@ function ThanksContent() {
               Your eSIM has been sent to your WhatsApp. Scan the QR code to activate.
             </p>
 
-            {plan && (
+            {displayPlan ? (
               <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-6 text-left">
                 <div className="flex justify-between text-sm mb-2">
                   <span className="text-slate-500">Plan</span>
-                  <span className="font-medium text-slate-900 dark:text-white">{plan.name}</span>
+                  <span className="font-medium text-slate-900 dark:text-white">{displayPlan.name}</span>
                 </div>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="text-slate-500">Data</span>
-                  <span className="font-medium text-slate-900 dark:text-white">{dataLabel}</span>
+                  <span className="font-medium text-slate-900 dark:text-white">
+                    {displayPlan.data_gb < 0 ? "Unlimited" : `${displayPlan.data_gb} GB`}
+                  </span>
                 </div>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="text-slate-500">Validity</span>
                   <span className="font-medium text-slate-900 dark:text-white">
-                    {plan.duration_days} {plan.duration_days === 1 ? "Day" : "Days"}
+                    {displayPlan.duration_days} {displayPlan.duration_days === 1 ? "Day" : "Days"}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm pt-2 border-t border-slate-200 dark:border-slate-700">
                   <span className="text-slate-500">Amount Paid</span>
-                  <span className="font-bold text-emerald-600">${plan.price_usd.toFixed(2)}</span>
+                  <span className="font-bold text-emerald-600">${displayPlan.price_usd.toFixed(2)}</span>
                 </div>
               </div>
-            )}
+            ) : data ? (
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-6 text-left">
+                <div className="flex justify-between text-sm mb-2">
+                  <span className="text-slate-500">Order</span>
+                  <span className="font-medium text-slate-900 dark:text-white">{data.planName}</span>
+                </div>
+                <div className="flex justify-between text-sm pt-2 border-t border-slate-200 dark:border-slate-700">
+                  <span className="text-slate-500">Amount Paid</span>
+                  <span className="font-bold text-emerald-600">${data.priceUsd.toFixed(2)}</span>
+                </div>
+              </div>
+            ) : null}
 
             <div className="flex items-center justify-center gap-2 text-sm text-slate-500 mb-6">
               <MessageCircle size={14} className="text-[#25D366]" />

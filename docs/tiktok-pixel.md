@@ -34,31 +34,41 @@ sends a thank-you link in the final WhatsApp message. When the customer
 taps it, `Purchase` fires from their browser (TikTok cookies from any prior
 ad click are still present, so attribution works).
 
-**URL format:**
+**URL format (preferred - admin-friendly):**
 ```
-https://www.esimconnections.com/thanks?plan=<planId>&ref=<uniqueRef>&email=<customerEmail>
+https://www.esimconnections.com/thanks?amount=<usd>&ref=<uniqueRef>&name=<planName>&email=<customerEmail>
 ```
 
-| Param | Required | Purpose                                                                                |
-| ----- | -------- | -------------------------------------------------------------------------------------- |
-| plan  | yes      | ID from `src/data/plans.ts` (e.g. `pk-20gb-30d`). Drives the Purchase value/contents.  |
-| ref   | strongly | Unique per customer/order. Used as `event_id` for dedup. WhatsApp msg ID or timestamp. |
-| email | optional | Calls `identify()` with SHA-256 hash before Purchase. Raises Event Match Quality.      |
+| Param  | Required | Purpose                                                                                 |
+| ------ | -------- | --------------------------------------------------------------------------------------- |
+| amount | yes      | USD value the customer paid (e.g. `5.46`). Drives the Purchase `value` for optimization. |
+| ref    | strongly | Unique per customer/order. Used as `event_id` for dedup. WhatsApp msg timestamp works.  |
+| name   | optional | Plan name shown on the page and sent as `content_name` (e.g. `5 GB - 7 Days`).          |
+| email  | optional | Calls `identify()` with SHA-256 hash before Purchase. Raises Event Match Quality.       |
+
+**Alternative URL format (if you happen to have the plan UUID):**
+```
+https://www.esimconnections.com/thanks?plan=<UUID>&ref=<uniqueRef>&email=<email>
+```
+Plan UUIDs live in `src/data/plans.ts` and look like `019c9954-98a8-711d-9387-24b64b9b2dee`.
+Using this form gives a nicer summary card on the page (data, validity shown).
+For daily use, the `amount=` form is easier.
 
 **Example WhatsApp message to send after confirming payment:**
 ```
-Here's your eSIM QR code! 🎉
+Here's your eSIM QR code!
 
 [attached: QR image]
 
 To confirm receipt, tap here:
-https://www.esimconnections.com/thanks?plan=pk-20gb-30d&ref=1713000000-ali&email=ali@example.com
+https://www.esimconnections.com/thanks?amount=5.46&name=5+GB+-+7+Days&ref=1713000000-ali&email=ali@example.com
 
 If you need help activating, just reply here.
 ```
 
 Pick any unique string for `ref` (WhatsApp message timestamp, customer name +
 epoch, your invoice number). Same `ref` used twice dedupes to one Purchase.
+URL-encode spaces in `name` as `+` or `%20`.
 
 When the backend adds a real order-completion path later, server-side Events
 API fires `Purchase` with the same `event_id = purchase_<ref>`, and TikTok
