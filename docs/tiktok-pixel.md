@@ -13,16 +13,56 @@ events or debugging existing ones. The working implementation lives in
 
 ## Events currently wired
 
-| Event            | Fires on                                   | Helper                   |
-| ---------------- | ------------------------------------------ | ------------------------ |
-| PageView         | Every route change                         | auto (ttq.page)          |
-| ViewContent      | Checkout page mount                        | `trackViewContent`       |
-| InitiateCheckout | User clicks "Order via WhatsApp"           | `trackInitiateCheckout`  |
-| PlaceAnOrder     | Same moment as InitiateCheckout            | `trackPlaceAnOrder`      |
-| Purchase         | Order status becomes `active` (deduped)    | `trackPurchase`          |
-| identify         | Before InitiateCheckout and before Purchase| `identify`               |
+| Event            | Fires on                                                  | Helper                   |
+| ---------------- | --------------------------------------------------------- | ------------------------ |
+| PageView         | Every route change                                        | auto (ttq.page)          |
+| ViewContent      | Each plan card enters the viewport (once per tab)         | `trackViewContent`       |
+| AddToCart        | User clicks Buy Now                                       | `trackAddToCart`         |
+| InitiateCheckout | Same moment as AddToCart                                  | `trackInitiateCheckout`  |
+| PlaceAnOrder     | Same moment as AddToCart                                  | `trackPlaceAnOrder`      |
+| Purchase         | `/thanks?plan=<id>&ref=<unique>` loads (deduped per ref)  | `trackPurchase`          |
+| identify         | Before Purchase on `/thanks` if `email` in URL            | `identify`               |
 
 Identify hashes email and phone via SHA-256 (Web Crypto API) before sending.
+
+## Admin workflow: the `/thanks` page
+
+The backend has no order database yet, and customers receive their eSIM QR
+directly in WhatsApp - they never land on any post-payment page. To give
+TikTok the `Purchase` signal it needs to optimize ad campaigns, the admin
+sends a thank-you link in the final WhatsApp message. When the customer
+taps it, `Purchase` fires from their browser (TikTok cookies from any prior
+ad click are still present, so attribution works).
+
+**URL format:**
+```
+https://www.esimconnections.com/thanks?plan=<planId>&ref=<uniqueRef>&email=<customerEmail>
+```
+
+| Param | Required | Purpose                                                                                |
+| ----- | -------- | -------------------------------------------------------------------------------------- |
+| plan  | yes      | ID from `src/data/plans.ts` (e.g. `pk-20gb-30d`). Drives the Purchase value/contents.  |
+| ref   | strongly | Unique per customer/order. Used as `event_id` for dedup. WhatsApp msg ID or timestamp. |
+| email | optional | Calls `identify()` with SHA-256 hash before Purchase. Raises Event Match Quality.      |
+
+**Example WhatsApp message to send after confirming payment:**
+```
+Here's your eSIM QR code! 🎉
+
+[attached: QR image]
+
+To confirm receipt, tap here:
+https://www.esimconnections.com/thanks?plan=pk-20gb-30d&ref=1713000000-ali&email=ali@example.com
+
+If you need help activating, just reply here.
+```
+
+Pick any unique string for `ref` (WhatsApp message timestamp, customer name +
+epoch, your invoice number). Same `ref` used twice dedupes to one Purchase.
+
+When the backend adds a real order-completion path later, server-side Events
+API fires `Purchase` with the same `event_id = purchase_<ref>`, and TikTok
+dedupes browser + server into a single Purchase automatically.
 
 ---
 
